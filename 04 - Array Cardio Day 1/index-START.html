@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪</title>
 </head>
+
 <body>
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
@@ -34,32 +36,90 @@
       'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
-    
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const filter = inventors.filter(inv => 1500 <= inv.year && inv.year < 1600)
+    console.log("FILTER:")
+    console.table(filter)
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+    ////////// FOR OF LOOP STYLE (WORKS TOO)
+    // let names = []
+    // let surnames = []
+
+    // for (let i of inventors) {
+    //   names.push(i.first)
+    //   surnames.push(i.last)
+    // }
+
+    const names2 = inventors.map(obj => obj.first)
+    const surnames2 = inventors.map(obj => obj.last)
+
+    const full_names = inventors.map(inv => `${inv.first} ${inv.last}`)
+    console.log("MAP:")
+    console.log(names2)
+    console.log(surnames2)
+    console.log(full_names)
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sort = inventors.sort((a, b) => a.year > b.year ? 1 : -1)
+    console.log("SORT:")
+    console.table(sort)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    // At this stage, the array order has been modified by the map method (First in lone: Nicolaus))
+    const reduce = inventors.reduce((acc, obj) => acc += obj.passed - obj.year, 0)
+    console.log("REDUCE:")
+    console.log(reduce);
+
     // 5. Sort the inventors by years lived
+    const sort_reduce = inventors.sort((a, b) => (b.passed - b.year) > (a.passed - a.year) ? 1 : -1)
+    inventors.map(inv => inv.lived = inv.passed - inv.year) // Just add a "lived" property to check result
+
+    console.log("SORT / REDUCE:")
+    console.table(sort_reduce)
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // Visit this page and enter the code below to make it work https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // Can't fetch.then as being block by mode: no-cors policy
 
+    //// const category = document.querySelector(".mw-category")
+    //// const links = category.querySelectorAll("a")
+    //// const links_array = Array.from(links)
+    //// const boulevard = links_array.map(link => link.innerText)
+    //// const de = boulevard.filter(item => item.match(/de /))
+    //// console.table(de)
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const sort_last_name = people.sort((a, b) => a.split(", ")[0] > b.split(", ")[0] ? 1 : -1)
+    console.log("SORT PEOPLE:")
+    console.table(sort_last_name)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
 
+    const transports = data.reduce((obj, el) => {
+      !obj[el] ? obj[el] = 1 : obj[el]++;
+      return obj;
+    }, {})
+
+    console.log(transports)
   </script>
 </body>
+
 </html>
+
+<!-- README :
+  - Array / object methods (map / filter / reduce / sort)
+  - Transform nodelist onto "proper" array
+  - Work with strings (split / regex (match(/patern/) )
+  - DOM manipulation
+-->
