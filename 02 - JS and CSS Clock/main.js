@@ -25,7 +25,7 @@ function clockRun() {
 setInterval(clockRun, 1000);
 
 /*
-  ? Readmi:
+  ? Readme:
   - set inteval
   - style property
   - time calculation in milliseconds
