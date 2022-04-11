@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Console Tricks!</title>
 </head>
+
 <body>
 
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
@@ -18,29 +20,62 @@
     }
 
     // Regular
+    console.log("Hello world");
 
     // Interpolated
+    const name = "Amin";
+    console.log(`Hello ${name} !`);
 
     // Styled
+    console.log("%c Hello Amin", "background-color: red; color: black; font-size: 15px");
 
-    // warning!
+    // Warning!
+    console.warn("Be careful !");
 
     // Error :|
+    console.error("This is definitly an error ...");
 
     // Info
+    console.info("This is an information");
 
     // Testing
+    const humans = [
+      { name: "Erick", age: 24, glasses: true },
+      { name: "Amin", age: 29, glasses: false },
+      { name: "Alvaro", age: 22, glasses: true },
+    ];
 
+    console.assert(humans[1].name === "Amin", "This is not Amin");
+    console.assert(humans[2].name === "Amin", "This is not Amin");
     // clearing
+    // console.clear() // This can be boring because hiding everything until this line ...
 
     // Viewing DOM Elements
+    const p = document.querySelector("p")
+    console.log(p) // Display element
+    console.dir(p) // Display element as an objectwith properties / methods attached to it
 
     // Grouping together
+    humans.forEach(human => {
+      console.groupCollapsed(human.name)
+      console.log(human.age)
+      console.log(human.glasses)
+      console.groupEnd("human")
+    })
 
-    // counting
+    // Counting (number of times you did console,count for same object. Kind of useless in my opinion)
+    console.count("Hello world") // 1
+    console.count("Hello world") // 2
 
-    // timing
+    // Timing
+
+    console.time("timeout"); // START
+
+    setTimeout(() => {
+      console.timeEnd("timeout"); // END
+    }, 2000);
 
   </script>
 </body>
+
 </html>
