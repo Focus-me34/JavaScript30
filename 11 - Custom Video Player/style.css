@@ -42,6 +42,10 @@ body {
   width: 100%;
 }
 
+.player__video[poster] {
+    width: 640px;
+}
+
 .player__button {
   background: none;
   border: 0;
@@ -57,6 +61,17 @@ body {
 .player__button:focus {
   border-color: #ffc600;
 }
+
+.screen {
+  transform: scale(1.4);
+  transition: 200ms;
+}
+
+.screen:hover {
+  transition: 200ms;
+  transform: scale(1.7);
+}
+
 
 .player__slider {
   width: 10px;
@@ -101,7 +116,7 @@ body {
   width: 50%;
   background: #ffc600;
   flex: 0;
-  flex-basis: 50%;
+  flex-basis: 0.1%;
 }
 
 /* unholy css to style input type="range" */
